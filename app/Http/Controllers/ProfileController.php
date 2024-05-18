@@ -13,8 +13,8 @@ class ProfileController extends Controller
     // Open profile page
     public function profile()
     {
-        $userToken = Session::get('user_token');
-        $profile = User::where('remember_token', $userToken)->first();
+        $userId = Session::get('user_id');
+        $profile = User::where('id', $userId)->first();
 
         dd($profile);
 
