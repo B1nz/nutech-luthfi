@@ -4,33 +4,26 @@ namespace App\Exports;
 
 use App\Models\Products;
 use Illuminate\Support\Collection;
-use Maatwebsite\Excel\Concerns\FromCollection;
+use Maatwebsite\Excel\Concerns\FromView;
 use Maatwebsite\Excel\Concerns\WithEvents;
+use Maatwebsite\Excel\Concerns\WithStyles;
 use Maatwebsite\Excel\Events\AfterSheet;
+use PhpOffice\PhpSpreadsheet\Worksheet\Worksheet;
 
-class ProductsExport implements FromCollection, WithEvents
+class ProductsExport implements FromView, WithEvents, WithStyles
 {
-    public function __construct(private Collection $products)
+    private Collection $products;
+
+    public function __construct(Collection $products)
     {
-        //
+        $this->products = $products;
     }
 
-    public function collection(): Collection
+    public function view(): \Illuminate\Contracts\View\View
     {
-        $collection = collect($this->products)->map(function ($product, $index) {
-            return [
-                'No' => $index + 1,
-                'Name' => $product->nama,
-                'Category' => $product->kategori->name, // Category name
-                'Harga Beli' => 'Rp ' . number_format($product->harga_beli, 0, ',', '.'), // Format harga_beli
-                'Harga Jual' => 'Rp ' . number_format($product->harga_jual, 0, ',', '.'), // Format harga_jual
-                'Stok' => $product->stok,
-            ];
-        });
-
-        // dd($collection);
-
-        return $collection;
+        return view('exports.products', [
+            'products' => $this->products
+        ]);
     }
 
     public function registerEvents(): array
@@ -53,20 +46,11 @@ class ProductsExport implements FromCollection, WithEvents
                 // Set the value for the title row
                 $event->sheet->setCellValue('A1', 'DATA PRODUK');
 
-                // Set the value for the headings row
-                $event->sheet->setCellValue('A3', 'No');
-                $event->sheet->setCellValue('B3', 'Name');
-                $event->sheet->setCellValue('C3', 'Category');
-                $event->sheet->setCellValue('D3', 'Harga Beli');
-                $event->sheet->setCellValue('E3', 'Harga Jual');
-                $event->sheet->setCellValue('F3', 'Stok');
-
                 // Apply styles to the range of cells containing headings
                 $event->sheet->getStyle('A3:F3')->applyFromArray([
                     'font' => [
                         'bold' => true,
                         'color' => ['rgb' => 'FFFFFF'],
-                        'size' => 14,
                     ],
                     'fill' => [
                         'fillType' => 'solid',
@@ -77,7 +61,55 @@ class ProductsExport implements FromCollection, WithEvents
                         'vertical' => 'center',
                     ],
                 ]);
+
+                // Apply borders to all cells, ensuring no extra column is included
+                $lastRow = $this->products->count() + 3; // Since data starts at row 4
+                $event->sheet->getStyle('A3:F' . $lastRow)->applyFromArray([
+                    'borders' => [
+                        'allBorders' => [
+                            'borderStyle' => \PhpOffice\PhpSpreadsheet\Style\Border::BORDER_THIN,
+                            'color' => ['rgb' => '000000'],
+                        ],
+                    ],
+                ]);
+
+                // Automatically adjust column widths
+                foreach (range('A', 'F') as $column) {
+                    $event->sheet->getColumnDimension($column)->setAutoSize(true);
+                }
             },
+        ];
+    }
+
+    public function styles(Worksheet $sheet)
+    {
+        return [
+            // Styling the title row
+            1 => [
+                'font' => [
+                    'bold' => true,
+                    'size' => 18,
+                ],
+                'alignment' => [
+                    'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+                    'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+                ],
+            ],
+            // Styling the headers row
+            3 => [
+                'font' => [
+                    'bold' => true,
+                    'color' => ['rgb' => 'FFFFFF'],
+                ],
+                'fill' => [
+                    'fillType' => \PhpOffice\PhpSpreadsheet\Style\Fill::FILL_SOLID,
+                    'startColor' => ['rgb' => 'FF0000'],
+                ],
+                'alignment' => [
+                    'horizontal' => \PhpOffice\PhpSpreadsheet\Style\Alignment::HORIZONTAL_CENTER,
+                    'vertical' => \PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER,
+                ],
+            ],
         ];
     }
 }

@@ -9,7 +9,7 @@
             @csrf
             <div class="flex flex-wrap gap-2">
                 <div class="relative w-full md:w-auto">
-                    <input type="text" placeholder="Cari barang" id="search" class="border p-2 pl-10 rounded w-full">
+                    <input type="text" placeholder="Cari barang" id="search" name="search" class="border p-2 pl-10 rounded w-full">
                     <span class="absolute inset-y-0 left-0 flex items-center pl-3">
                         <i class="fas fa-search text-gray-400"></i>
                     </span>

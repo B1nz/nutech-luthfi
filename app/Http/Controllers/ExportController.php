@@ -17,21 +17,22 @@ class ExportController extends Controller
      */
     public function export(Request $request)
     {
-        // Get search term and category from the request
         $search = $request->input('search');
         $category = $request->input('category');
 
-        // Filter products based on search term and category
-        $products = Products::query()
-            ->when($search, function ($query) use ($search) {
-                $query->where('nama', 'like', "%{$search}%");
-            })
-            ->when($category, function ($query) use ($category) {
-                $query->where('kategori_id', $category);
-            })
-            ->get();
+        $query = Products::query();
 
-        // Export filtered products to Excel
+        if ($search) {
+            $query->whereRaw('nama LIKE ?', ["%{$search}%"]);
+        }
+
+        if ($category) {
+            $query->where('kategori_id', '=', $category);
+        }
+
+        $products = $query->get();
+
+
         return Excel::download(new ProductsExport($products), 'products.xlsx');
     }
 }
