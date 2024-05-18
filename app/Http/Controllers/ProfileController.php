@@ -16,7 +16,7 @@ class ProfileController extends Controller
         $userId = Session::get('user_id');
         $profile = User::where('id', $userId)->first();
 
-        dd($profile);
+        dd($userId);
 
         if (!$profile) {
             return redirect('/')->withErrors(['error' => 'User not found']);
