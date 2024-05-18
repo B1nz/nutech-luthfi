@@ -33,15 +33,14 @@
                     <input type="password" name="password" id="password"
                         class="w-full pl-10 p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
                         placeholder="Masukkan password anda" required>
+                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
+                        <i class="fa-solid fa-eye-slash text-gray-400" id="toggle-password"></i>
+                    </div>
                 </div>
                 <!-- Submit button -->
                 <button type="submit" class="w-full bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">Masuk</button>
 
                 <div class="flex justify-between w-full py-4">
-                    <div>
-                        <input type="checkbox" name="ch" id="show-password" class="mr-1" />
-                        <span class="text-md">Show Password</span>
-                    </div>
                     <a href="/register" class="font-regular text-md">Register</a>
                 </div>
             </form>
@@ -89,17 +88,20 @@
             });
         </script>
     @endif
-
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const showPasswordCheckbox = document.getElementById('show-password');
+            const togglePasswordIcon = document.getElementById('toggle-password');
             const passwordField = document.getElementById('password');
 
-            showPasswordCheckbox.addEventListener('change', function() {
-                if (this.checked) {
+            togglePasswordIcon.addEventListener('click', function() {
+                if (passwordField.type === 'password') {
                     passwordField.type = 'text';
+                    togglePasswordIcon.classList.remove('fa-eye-slash');
+                    togglePasswordIcon.classList.add('fa-eye');
                 } else {
                     passwordField.type = 'password';
+                    togglePasswordIcon.classList.remove('fa-eye');
+                    togglePasswordIcon.classList.add('fa-eye-slash');
                 }
             });
         });
