@@ -5,7 +5,7 @@
 @section('content')
     <div class="bg-gray-100 h-screen w-screen flex items-center justify-center">
         <div class="w-full bg-white p-8 h-screen flex flex-col items-start justify-start">
-            <form id="profileForm" class="w-full" action="{{ route('profileUpdate') }}" method="POST" enctype="multipart/form-data">
+            <form id="profileForm" class="w-full" action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="relative mb-8">
                     <div class="relative inline-block">
@@ -48,6 +48,37 @@
                     </button>
                 </div>
             </form>
+
+            {{-- Static profile section
+            <div class="w-full mt-8">
+                <h1 class="text-2xl font-semibold mt-4 underline py-5">Get to know with the candidate!</h1>
+                <div class="relative mb-8">
+                    <div class="relative inline-block">
+                        <img src="{{ asset('img/static_avatar.png') }}" alt="Static Profile Picture" class="w-42 h-42 rounded-full" style="width: 156px; height: 156px;">
+                    </div>
+                    <h2 class="text-2xl font-semibold mt-4">Luthfi Goldiansyah Kusumajadi</h2>
+                </div>
+                <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8">
+                    <div class="col-span-1">
+                        <div class="mb-4 relative">
+                            <label class="block text-sm font-medium text-gray-700">Nama Kandidat</label>
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center mt-6 pointer-events-none">
+                                <i class="fa-solid fa-user text-gray-500"></i>
+                            </div>
+                            <input type="text" class="mt-1 block w-full pl-10 p-2 border border-gray-300 rounded-md" value="Luthfi Goldiansyah Kusumajadi" readonly>
+                        </div>
+                    </div>
+                    <div class="col-span-1">
+                        <div class="mb-4 relative">
+                            <label class="block text-sm font-medium text-gray-700">Posisi Kandidat</label>
+                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center mt-6 pointer-events-none">
+                                <i class="fa-solid fa-code text-gray-500"></i>
+                            </div>
+                            <input type="text" class="mt-1 block w-full pl-10 p-2 border border-gray-300 rounded-md" value="PHP Developer" readonly>
+                        </div>
+                    </div>
+                </div>
+            </div> --}}
         </div>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -88,7 +119,6 @@
             });
         </script>
     @endif
-
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>

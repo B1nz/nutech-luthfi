@@ -61,7 +61,7 @@ class AuthController extends Controller
         Session::put('token', $token);
         Session::put('user_token', $generate_token);
 
-        return redirect('/');
+        return redirect('/login')->with('success', 'Register successfully. Please login');
     }
 
     // Process login request
@@ -74,7 +74,7 @@ class AuthController extends Controller
             $token = JWTAuth::fromUser($user);
             Session::put('token', $token);
             Session::put('user_token', $user->remember_token);
-            return redirect('/');
+            return redirect('/')->with('success', 'Logged in successfully.');
         }
 
 

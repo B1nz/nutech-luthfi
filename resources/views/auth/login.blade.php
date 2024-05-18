@@ -45,15 +45,6 @@
                     <a href="/register" class="font-regular text-md">Register</a>
                 </div>
             </form>
-            @if ($errors->any())
-                <div>
-                    <ul>
-                        @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
-                        @endforeach
-                    </ul>
-                </div>
-            @endif
         </div>
     </div>
 
@@ -61,6 +52,44 @@
     <div class="w-full h-full lg:w-1/2 lg:flex bg-white hidden lg:block">
         <img src="{{ asset('img/Frame 98699.png') }}" alt="Image" class="w-full h-full object-cover">
     </div>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {{-- Catch success message --}}
+    @if (session('success'))
+        <script>
+            // Display Sweet Alert toast for success message
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000
+            });
+        </script>
+    @endif
+
+    {{-- Catch error message --}}
+    @if ($errors->any())
+        <script>
+            // Concatenate all validation errors into one message
+            var errorMessage = '';
+            @foreach ($errors->all() as $error)
+                errorMessage += '{{ $error }}<br>';
+            @endforeach
+            // Display Sweet Alert toast for all validation errors
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                html: errorMessage,
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000
+            });
+        </script>
+    @endif
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {

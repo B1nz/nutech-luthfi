@@ -95,7 +95,7 @@ class ProductController extends Controller
 
         $product->save();
 
-        return redirect()->route('products')->with('success', 'Product updated successfully.');
+        return redirect()->route('home')->with('success', 'Product updated successfully.');
     }
 
     public function delete($id)
