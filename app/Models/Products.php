@@ -20,7 +20,7 @@ class Products extends Model
     ];
 
     public function kategori() {
-        return $this->belongsTo('Kategori::class');
+        return $this->belongsTo(Categories::class, 'kategori_id');
     }
 
     use HasFactory;

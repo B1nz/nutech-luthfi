@@ -22,13 +22,13 @@ Route::middleware(['auth'])->group(function () {
     // Route::get('/', [HomeController::class, 'index']);
 
     //Index Route
-    Route::get('/', [HomeController::class, 'home']);
+    Route::get('/', [HomeController::class, 'home'])->name('products');
 
     // Product Route
     Route::get('/products/add', [ProductController::class, 'add'])->name('products.create');
     Route::post('/products', [ProductController::class, 'store'])->name('products.store');
     Route::get('/products/edit/{id}', [ProductController::class, 'edit'])->name('product.edit');
-    Route::get('/products/update/{id}', [ProductController::class, 'update'])->name('product.update');
+    Route::post('/products/update/{id}', [ProductController::class, 'update'])->name('product.update');
     Route::delete('/products/delete/{id}', [ProductController::class, 'delete'])->name('products.delete');
 
     // Profile Route

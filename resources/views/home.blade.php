@@ -95,6 +95,22 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
 
+{{-- Catch success message --}}
+@if (session('success'))
+    <script>
+        // Display Sweet Alert toast for success message
+        Swal.fire({
+            icon: 'success',
+            title: 'Success',
+            text: '{{ session('success') }}',
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 5000
+        });
+    </script>
+@endif
+
 <script>
     document.addEventListener('DOMContentLoaded', function() {
         const productTable = document.querySelector('#productTable');

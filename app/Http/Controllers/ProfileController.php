@@ -6,6 +6,7 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class ProfileController extends Controller
 {
@@ -32,11 +33,18 @@ class ProfileController extends Controller
             abort(404);
         }
 
-        $validatedData = $request->validate([
+        $validator = Validator::make($request->all(), [
             'candidateName' => 'required|string|max:255',
             'candidatePosition' => 'required|string|max:255',
             'image' => 'nullable|image|mimes:jpeg,png|max:100',
         ]);
+
+        // Check if validation fails
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput();
+        }
+
+        $validatedData = $validator->validated();
 
         $profile->name = $validatedData['candidateName'];
         $profile->role = $validatedData['candidatePosition'];
@@ -54,4 +62,5 @@ class ProfileController extends Controller
 
         return redirect()->route('profile')->with('success', 'Profile updated successfully.');
     }
+
 }
