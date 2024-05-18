@@ -72,7 +72,6 @@
     {{-- Catch success message --}}
     @if (session('success'))
         <script>
-            // Display Sweet Alert toast for success message
             Swal.fire({
                 icon: 'success',
                 title: 'Success',
@@ -88,12 +87,11 @@
     {{-- Catch error message --}}
     @if ($errors->any())
         <script>
-            // Concatenate all validation errors into one message
             var errorMessage = '';
             @foreach ($errors->all() as $error)
                 errorMessage += '{{ $error }}<br>';
             @endforeach
-            // Display Sweet Alert toast for all validation errors
+
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
@@ -111,7 +109,6 @@
             const showPasswordCheckbox = document.getElementById('show-password');
             const passwordField = document.getElementById('password');
             const passwordConfirmField = document.getElementById('password_confirmation');
-
 
             showPasswordCheckbox.addEventListener('change', function() {
                 if (this.checked) {

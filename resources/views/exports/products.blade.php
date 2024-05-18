@@ -1,13 +1,10 @@
 <!-- resources/views/exports/products.blade.php -->
 <table>
     <thead>
-        <!-- Title Row -->
         <tr>
             <th colspan="6">DATA PRODUK</th>
         </tr>
-        <!-- Empty Row -->
         <tr></tr>
-        <!-- Header Row -->
         <tr>
             <th>No</th>
             <th>Nama Produk</th>

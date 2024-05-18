@@ -29,7 +29,7 @@
                     </div>
                 </div>
 
-                <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
                     <div class="col-span-1">
                         <div class="mb-4 relative">
                             <label for="harga_beli" class="block text-sm font-medium text-gray-700">Harga Beli</label>
@@ -63,32 +63,11 @@
                         </div>
                     </div>
                 </div>
-
-                {{-- Catch error message --}}
-                @if ($errors->any())
-                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-                    <script>
-                        // Concatenate all validation errors into one message
-                        var errorMessage = '';
-                        @foreach ($errors->all() as $error)
-                            errorMessage += '{{ $error }}<br>';
-                        @endforeach
-
-                        // Display Sweet Alert toast for all validation errors
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            html: errorMessage,
-                            toast: true,
-                            position: 'top-end',
-                            showConfirmButton: false,
-                            timer: 5000
-                        });
-                    </script>
-                @endif
-
                 <div class="col-span-1 md:col-span-2 lg:col-span-3 flex flex-col md:flex-row justify-end gap-2">
-                    <button type="button" class="bg-white border border-blue-500 text-blue-500 hover:bg-blue-500 hover:border-blue-500 hover:text-white px-8 py-2 rounded-md">Batalkan</button>
+                    <button type="button" class="bg-white border border-blue-500 text-blue-500 hover:bg-blue-500 hover:border-blue-500 hover:text-white px-8 py-2 rounded-md"
+                            onclick="window.history.back();">
+                        Batalkan
+                    </button>
                     <button type="submit" class="bg-blue-500 text-white hover:bg-blue-600 px-8 py-2 rounded-md">Simpan</button>
                 </div>
             </form>
@@ -97,10 +76,10 @@
 </div>
 <script>
     function formatPrice(input) {
-        let value = input.value.replace(/\D/g, ''); // Remove non-numeric characters
+        let value = input.value.replace(/\D/g, '');
         if (value) {
             value = parseInt(value, 10).toLocaleString('id-ID');
-            input.value = value; // Update input value with formatted number
+            input.value = value;
         }
     }
 
@@ -121,8 +100,8 @@
             const imageIcon = document.getElementById('imageIcon');
             img.src = URL.createObjectURL(file);
             img.style.display = 'block';
-            uploadText.style.display = 'none'; // Hide the upload text
-            imageIcon.style.display = 'none'; // Hide the image icon
+            uploadText.style.display = 'none';
+            imageIcon.style.display = 'none';
             img.onload = () => {
                 URL.revokeObjectURL(img.src);
             };

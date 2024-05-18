@@ -81,44 +81,6 @@
             </div> --}}
         </div>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    {{-- Catch success message --}}
-    @if (session('success'))
-        <script>
-            // Display Sweet Alert toast for success message
-            Swal.fire({
-                icon: 'success',
-                title: 'Success',
-                text: '{{ session('success') }}',
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 5000
-            });
-        </script>
-    @endif
-
-    {{-- Catch error message --}}
-    @if ($errors->any())
-        <script>
-            // Concatenate all validation errors into one message
-            var errorMessage = '';
-            @foreach ($errors->all() as $error)
-                errorMessage += '{{ $error }}<br>';
-            @endforeach
-            // Display Sweet Alert toast for all validation errors
-            Swal.fire({
-                icon: 'error',
-                title: 'Oops...',
-                html: errorMessage,
-                toast: true,
-                position: 'top-end',
-                showConfirmButton: false,
-                timer: 5000
-            });
-        </script>
-    @endif
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>

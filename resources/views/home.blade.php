@@ -98,7 +98,6 @@
 {{-- Catch success message --}}
 @if (session('success'))
     <script>
-        // Display Sweet Alert toast for success message
         Swal.fire({
             icon: 'success',
             title: 'Success',
@@ -308,7 +307,7 @@
             updateTable();
         });
 
-        updateTable(); // Initial table rendering
+        updateTable();
     });
 </script>
 @endsection

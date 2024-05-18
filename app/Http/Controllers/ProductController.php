@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Models\Products;
 use App\Models\Categories;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Validation\Rule;
+
 
 class ProductController extends Controller
 {
@@ -21,7 +23,14 @@ class ProductController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'category_id' => 'required|exists:categories,id',
-            'nama' => 'required|string|max:255|unique:products', // Ensure nama is unique
+            'nama' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('products')->where(function ($query) {
+                    $query->whereNull('deleted_at');
+                }),
+            ],
             'harga_beli' => 'required|string',
             'stock' => 'required|integer',
             'image' => 'required|image|mimes:jpg,png|max:100',
@@ -66,7 +75,14 @@ class ProductController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'category_id' => 'required|exists:categories,id',
-            'nama' => 'required|string|max:255|unique:products,nama,' . $id, // Ensure nama is unique, excluding the current product
+            'nama' => [
+                'required',
+                'string',
+                'max:255',
+                Rule::unique('products')->where(function ($query) use ($id) {
+                    $query->whereNull('deleted_at')->where('id', '<>', $id);
+                }),
+            ],
             'harga_beli' => 'required|string',
             'stock' => 'required|integer',
             'image' => 'image|mimes:jpg,png|max:100',

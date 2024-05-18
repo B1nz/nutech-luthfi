@@ -75,6 +75,42 @@
 
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {{-- Catch success message --}}
+    @if (session('success'))
+        <script>
+            Swal.fire({
+                icon: 'success',
+                title: 'Success',
+                text: '{{ session('success') }}',
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000
+            });
+        </script>
+    @endif
+
+    {{-- Catch error message --}}
+    @if ($errors->any())
+        <script>
+            var errorMessage = '';
+            @foreach ($errors->all() as $error)
+                errorMessage += '{{ $error }}<br>';
+            @endforeach
+            Swal.fire({
+                icon: 'error',
+                title: 'Oops...',
+                html: errorMessage,
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 5000
+            });
+        </script>
+    @endif
+
     <script>
         const sidebar = document.getElementById('sidebar');
         const sidebarToggle = document.getElementById('sidebarToggle');
@@ -86,11 +122,8 @@
                 sidebar.classList.remove('collapsed');
             }
         }
-
         checkScreenWidth();
-
         window.addEventListener('resize', checkScreenWidth);
-
         sidebarToggle.addEventListener('click', () => {
             sidebar.classList.toggle('collapsed');
         });
