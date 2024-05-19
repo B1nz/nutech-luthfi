@@ -14,7 +14,7 @@ class ProfileController extends Controller
     public function profile()
     {
         $userToken = Session::get('user_token');
-        $profile = User::where('id', $userToken)->first();
+        $profile = User::where('remember_token', $userToken)->first();
 
         if (!$profile) {
             return redirect('/')->withErrors(['error' => 'User not found']);
