@@ -73,7 +73,6 @@ class AuthController extends Controller
             $user = Auth::user();
             $token = JWTAuth::fromUser($user);
             Session::put('token', $token);
-            Session::put('user_id', $user->id);
             Session::put('user_token', $user->remember_token);
             return redirect('/')->with('success', 'Logged in successfully.');
         }
