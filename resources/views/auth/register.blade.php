@@ -33,13 +33,16 @@
                     <input type="text" class="w-full pl-10 p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
                         name="email" id="email" placeholder="Masukkan email anda" required autofocus>
                 </div>
-                <div class="py-2 relative">
+                <div class="py-2 mb-4 relative">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                         <i class="fas fa-lock text-gray-400"></i>
                     </div>
                     <input type="password" name="password" id="password"
                         class="w-full pl-10 p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
                         placeholder="Masukkan password anda" required>
+                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
+                        <i class="fa-solid fa-eye-slash text-gray-400" id="toggle-password"></i>
+                    </div>
                 </div>
                 <div class="py-2 mb-4 relative">
                     <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
@@ -47,16 +50,15 @@
                     </div>
                     <input type="password" name="password_confirmation" id="password_confirmation"
                         class="w-full pl-10 p-2 border border-gray-300 rounded-md placeholder:font-light placeholder:text-gray-500"
-                        placeholder="Masukkan password anda" required>
+                        placeholder="Konfirmasi password anda" required>
+                    <div class="absolute inset-y-0 right-0 pr-3 flex items-center cursor-pointer">
+                        <i class="fa-solid fa-eye-slash text-gray-400" id="toggle-password_confirmation"></i>
+                    </div>
                 </div>
                 <!-- Submit button -->
                 <button type="submit" class="w-full bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">Daftar</button>
 
                 <div class="flex justify-between w-full py-4">
-                    <div>
-                        <input type="checkbox" name="ch" id="show-password" class="mr-1" />
-                        <span class="text-md">Show Password</span>
-                    </div>
                     <a href="/login" class="font-regular text-md">Login</a>
                 </div>
             </form>
@@ -106,17 +108,32 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            const showPasswordCheckbox = document.getElementById('show-password');
+            const togglePasswordIcon = document.getElementById('toggle-password');
             const passwordField = document.getElementById('password');
-            const passwordConfirmField = document.getElementById('password_confirmation');
+            const togglePasswordIconConf = document.getElementById('toggle-password_confirmation');
+            const passwordFieldConf = document.getElementById('password_confirmation');
 
-            showPasswordCheckbox.addEventListener('change', function() {
-                if (this.checked) {
+            togglePasswordIcon.addEventListener('click', function() {
+                if (passwordField.type === 'password') {
                     passwordField.type = 'text';
-                    passwordConfirmField.type = 'text';
+                    togglePasswordIcon.classList.remove('fa-eye-slash');
+                    togglePasswordIcon.classList.add('fa-eye');
                 } else {
                     passwordField.type = 'password';
-                    passwordConfirmField.type = 'password';
+                    togglePasswordIcon.classList.remove('fa-eye');
+                    togglePasswordIcon.classList.add('fa-eye-slash');
+                }
+            });
+
+            togglePasswordIconConf.addEventListener('click', function() {
+                if (passwordFieldConf.type === 'password') {
+                    passwordFieldConf.type = 'text';
+                    togglePasswordIconConf.classList.remove('fa-eye-slash');
+                    togglePasswordIconConf.classList.add('fa-eye');
+                } else {
+                    passwordFieldConf.type = 'password';
+                    togglePasswordIconConf.classList.remove('fa-eye');
+                    togglePasswordIconConf.classList.add('fa-eye-slash');
                 }
             });
         });
