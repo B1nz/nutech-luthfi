@@ -40,45 +40,41 @@
                     </div>
                 </div>
                 <div class="mt-4 flex justify-end gap-2">
-                    <button id="resetButton" type="button" class="hidden bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded ml-2">
+                    <button id="resetButton" type="button" class="hidden bg-white border border-red-500 text-red-500 hover:bg-red-500 hover:border-red-500 hover:text-white px-8 py-2 rounded-md">
                         Reset
                     </button>
-                    <button id="saveButton" type="submit" class="hidden bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                    <button id="saveButton" type="submit" class="hidden bg-blue-500 border border-blue-500 text-white px-8 py-2 rounded-md">
                         Save
                     </button>
                 </div>
             </form>
 
-            {{-- Static profile section
-            <div class="w-full mt-8">
-                <h1 class="text-2xl font-semibold mt-4 underline py-5">Get to know with the candidate!</h1>
-                <div class="relative mb-8">
-                    <div class="relative inline-block">
-                        <img src="{{ asset('img/static_avatar.png') }}" alt="Static Profile Picture" class="w-42 h-42 rounded-full" style="width: 156px; height: 156px;">
-                    </div>
-                    <h2 class="text-2xl font-semibold mt-4">Luthfi Goldiansyah Kusumajadi</h2>
-                </div>
-                <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-8">
-                    <div class="col-span-1">
-                        <div class="mb-4 relative">
-                            <label class="block text-sm font-medium text-gray-700">Nama Kandidat</label>
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center mt-6 pointer-events-none">
-                                <i class="fa-solid fa-user text-gray-500"></i>
-                            </div>
-                            <input type="text" class="mt-1 block w-full pl-10 p-2 border border-gray-300 rounded-md" value="Luthfi Goldiansyah Kusumajadi" readonly>
-                        </div>
-                    </div>
-                    <div class="col-span-1">
-                        <div class="mb-4 relative">
-                            <label class="block text-sm font-medium text-gray-700">Posisi Kandidat</label>
-                            <div class="absolute inset-y-0 left-0 pl-3 flex items-center mt-6 pointer-events-none">
-                                <i class="fa-solid fa-code text-gray-500"></i>
-                            </div>
-                            <input type="text" class="mt-1 block w-full pl-10 p-2 border border-gray-300 rounded-md" value="PHP Developer" readonly>
+            <hr class="my-8 w-full border-gray-300">
+            <!-- Candidate Container -->
+            <div class="w-full p-8 mt-8 rounded-lg shadow-lg bg-gradient-to-r from-red-600 to-yellow-500">
+                <h3 class="text-xl font-semibold mb-8 text-center text-left">Get to know about me!</h3>
+                <div class="flex flex-col items-center mb-4">
+                    <img src="{{ asset('img/static_avatar.png') }}" alt="Candidate Profile Picture" class="w-24 h-24 rounded-full mr-0 md:mr-6 mb-4 md:mb-0">
+                    <div class="text-center">
+                        <h4 class="text-2xl font-bold">Luthfi Goldiansyah Kusumajadi</h4>
+                        <p class="text-gray-300">PHP Developer</p>
+                        <div class="flex justify-center space-x-4 mt-4 md:mt-8">
+                            <a href="https://www.linkedin.com/in/luthfigk/" class="text-white">
+                                <i class="fab fa-linkedin fa-2x hover:bg-opacity-50 transform transition-transform hover:scale-105"></i>
+                            </a>
+                            <a href="https://www.instagram.com/_gluthfi/" class="text-white">
+                                <i class="fab fa-instagram fa-2x hover:bg-opacity-50 transform transition-transform hover:scale-105"></i>
+                            </a>
+                            <a href="https://github.com/b1nz" class="text-white">
+                                <i class="fab fa-github fa-2x hover:bg-opacity-50 transform transition-transform hover:scale-105"></i>
+                            </a>
                         </div>
                     </div>
                 </div>
-            </div> --}}
+                <p class="mt-8 text-center">
+                    "The only way to do great work is to love what you do." - Steve Jobs
+                </p>
+            </div>
         </div>
     </div>
 
