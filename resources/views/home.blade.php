@@ -52,8 +52,8 @@
                     <tr id="product-row-{{ $produk->id }}" class="border-b border-gray-200 hover:bg-gray-100 transition duration-300 ease-in-out">
                         <td class="px-6 py-4 whitespace-no-wrap">{{ $index + 1 }}</td>
                         <td class="px-6 py-4 whitespace-no-wrap">
-                            <img src="{{ $produk->image_path ? asset('storage/' . $produk->image_path) : asset('img/no-image.jpg') }}"
-                            alt="Product Image" class="w-16 h-16 object-cover">
+                            <img src="{{ $produk->image_path ? asset($produk->image_path) : asset('img/no-image.jpg') }}"
+                            alt="{{ $produk->nama }}" class="w-16 h-16 object-cover">
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap">{{ $produk->nama }}</td>
                         <td class="px-6 py-4 whitespace-no-wrap">{{ $produk->kategori->name }}</td>
@@ -196,7 +196,7 @@
                     <tr id="product-row-${product.id}" class="border-b border-gray-200 hover:bg-gray-100 transition duration-300 ease-in-out">
                         <td class="px-6 py-4 whitespace-no-wrap">${(currentPage - 1) * itemsPerPage + index + 1}</td>
                         <td class="px-6 py-4 whitespace-no-wrap">
-                            <img src="{{ asset('storage/') }}/${product.image_path}" alt="Product Image" class="w-16 h-16 object-cover">
+                            <img src="${product.image_path}" alt="${product.nama}" class="w-16 h-16 object-cover">
                         </td>
                         <td class="px-6 py-4 whitespace-no-wrap">${product.nama}</td>
                         <td class="px-6 py-4 whitespace-no-wrap">${product.kategori.name}</td>
