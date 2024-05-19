@@ -40,8 +40,8 @@
                 <!-- Submit button -->
                 <button type="submit" class="w-full bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">Masuk</button>
 
-                <div class="flex justify-between w-full py-4">
-                    <a href="/register" class="font-regular text-md">Register</a>
+                <div class="flex justify-end w-full py-4">
+                    <a href="/register" class="font-regular text-md">Don't have account yet? Register</a>
                 </div>
             </form>
         </div>

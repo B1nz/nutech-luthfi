@@ -58,8 +58,8 @@
                 <!-- Submit button -->
                 <button type="submit" class="w-full bg-red-600 text-white py-2 px-4 rounded-md hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2">Daftar</button>
 
-                <div class="flex justify-between w-full py-4">
-                    <a href="/login" class="font-regular text-md">Login</a>
+                <div class="flex justify-end w-full py-4">
+                    <a href="/login" class="font-regular text-md">Already have account? Login</a>
                 </div>
             </form>
         </div>

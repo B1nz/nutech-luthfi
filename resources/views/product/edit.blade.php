@@ -1,6 +1,6 @@
 @extends('layouts.sidebar')
 
-@section('title', 'Tambah Produk')
+@section('title', 'Ubah Produk')
 
 @section('content')
 <div class="bg-gray-100 h-screen w-screen flex items-center justify-center">
@@ -71,7 +71,7 @@
                         <div class="text-center">
                             <i id="imageIcon" class="fa-solid fa-image text-4xl text-blue-500 mb-4"></i>
                             <input type="file" id="image" name="image" class="opacity-0 absolute top-0 left-0 w-full h-full cursor-pointer"
-                                accept=".png, .jpg">
+                                accept=".png, .jpg" onchange="validateFileSize(this)">
                             <img id="imagePreview" src="{{ $product->image_path ? asset('storage/' . $product->image_path) : '' }}" alt="Preview" style="display: {{ $product->image_path ? 'block' : 'none' }}; max-width: 100%; max-height: 200px;">
                             <p id="uploadText" class="text-blue-500">Upload gambar disini.</p>
                         </div>
@@ -110,6 +110,22 @@
             return false;
         }
         return true;
+    }
+
+    function validateFileSize(input) {
+        if (input.files && input.files[0]) {
+            const fileSize = input.files[0].size; // in bytes
+            const maxSize = 100 * 1024; // 100 KB
+
+            if (fileSize > maxSize) {
+                Swal.fire(
+                    'Error!',
+                    'Ukuran gambar maksimal 100kb.',
+                    'error'
+                );
+                input.value = ''; // Clear the file input
+            }
+        }
     }
 
     document.getElementById('image').addEventListener('change', function(event) {
