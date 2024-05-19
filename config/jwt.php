@@ -162,7 +162,7 @@ return [
     | `sub` and `iat` will automatically be persisted, in
     | addition to the these claims.
     |
-    | Note: If a claim does not exist then it will be ignored.
+    | Note: If a claim does not exist then it will be ignored. test
     |
     */
 
