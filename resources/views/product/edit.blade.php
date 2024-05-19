@@ -37,7 +37,7 @@
                                 <i class="fa-solid fa-rupiah-sign text-gray-500"></i>
                             </div>
                             <input type="text" id="harga_beli" name="harga_beli" class="mt-1 block w-full pl-10 p-2 border border-gray-300 rounded-md"
-                                placeholder="Masukkan harga jual" readonly>
+                                placeholder="Masukkan harga beli">
                         </div>
                     </div>
                     <div class="col-span-1">
