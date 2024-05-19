@@ -32,7 +32,9 @@ class ExportController extends Controller
 
         $products = $query->get();
 
+        $timestamp = date('Y-m-d_H-i-s');
+        $filename = 'products_' . $timestamp . '.xlsx';
 
-        return Excel::download(new ProductsExport($products), 'products.xlsx');
+        return Excel::download(new ProductsExport($products), $filename);
     }
 }
