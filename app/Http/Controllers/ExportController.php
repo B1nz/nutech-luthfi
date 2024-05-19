@@ -32,6 +32,10 @@ class ExportController extends Controller
 
         $products = $query->get();
 
+        if ($products->isEmpty()) {
+            return redirect()->back()->withErrors('No Data to Export');
+        }
+
         $timestamp = date('Y-m-d_H-i-s');
         $filename = 'products_' . $timestamp . '.xlsx';
 
