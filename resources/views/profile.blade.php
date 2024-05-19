@@ -57,7 +57,7 @@
                     <img src="{{ asset('img/static_avatar.png') }}" alt="Candidate Profile Picture" class="w-24 h-24 rounded-full mr-0 md:mr-6 mb-4 md:mb-0">
                     <div class="text-center">
                         <h4 class="text-2xl font-bold">Luthfi Goldiansyah Kusumajadi</h4>
-                        <p class="text-gray-300">PHP Developer</p>
+                        <p class="text-gray-300">Web Programmer</p>
                         <div class="flex justify-center space-x-4 mt-4 md:mt-8">
                             <a href="https://www.linkedin.com/in/luthfigk/" class="text-white">
                                 <i class="fab fa-linkedin fa-2x hover:bg-opacity-50 transform transition-transform hover:scale-105"></i>
