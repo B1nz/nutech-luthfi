@@ -6,6 +6,19 @@
 <div class="bg-gray-100 h-screen w-screen flex items-center justify-center">
     <div class="w-full bg-white p-8 h-screen flex flex-col items-start justify-start">
         <div class="lg:p-8 w-full">
+            <nav class="text-sm mb-8" aria-label="Breadcrumb">
+                <ol class="list-none p-0 inline-flex text-gray-400">
+                    <li class="flex items-center">
+                        <a href="/" class="text-2xl hover:bg-opacity-50 transform transition-transform hover:scale-105 hover:underline">Daftar Produk</a>
+                        <svg class="w-8 h-8 mx-2 fill-current text-gray-700" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 20">
+                            <path d="M10.59 6.59L15.17 11 10.59 15.41 9.17 14 12.34 11 9.17 8 10.59 6.59z" />
+                        </svg>
+                    </li>
+                    <li class="text-2xl font-medium flex items-center text-gray-700">
+                        Edit Produk
+                    </li>
+                </ol>
+            </nav>
             <form class="w-full" action="{{ route('product.update', $product->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 <div class="w-full grid grid-cols-1 md:grid-cols-2 gap-4">
