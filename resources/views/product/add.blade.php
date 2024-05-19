@@ -65,7 +65,7 @@
                 </div>
                 <div class="col-span-1 md:col-span-2 lg:col-span-3 flex flex-col md:flex-row justify-end gap-2">
                     <button type="button" class="bg-white border border-blue-500 text-blue-500 hover:bg-blue-500 hover:border-blue-500 hover:text-white px-8 py-2 rounded-md"
-                            onclick="window.history.back();">
+                            onclick="window.href('/');">
                         Batalkan
                     </button>
                     <button type="submit" class="bg-blue-500 text-white hover:bg-blue-600 px-8 py-2 rounded-md">Simpan</button>
